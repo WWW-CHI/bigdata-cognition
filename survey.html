@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>调研可视化 | 大数据技术专业认知 · 三年学习成果展示</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/tailwind.config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+</head>
+<body class="antialiased">
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass shadow-sm transition-shadow">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-lg tech-bg flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10m0 0l4-4m-4 4l4 4M20 17V7m0 0l-4 4m4-4l-4-4M14 4H10a2 2 0 00-2 2v12a2 2 0 002 2h4a2 2 0 002-2V6a2 2 0 00-2-2z"/></svg>
+        </div>
+        <span class="font-bold text-slate-800 text-lg">大数据技术专业认知</span>
+      </a>
+      <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+        <a href="index.html" class="nav-link hover:text-brand-700">首页</a>
+        <a href="major.html" class="nav-link hover:text-brand-700">专业介绍</a>
+        <a href="course.html" class="nav-link hover:text-brand-700">课程体系</a>
+        <a href="job.html" class="nav-link hover:text-brand-700">就业方向</a>
+        <a href="roadmap.html" class="nav-link hover:text-brand-700">学习路线</a>
+        <a href="survey.html" class="nav-link active">调研可视化</a>
+        <a href="about.html" class="nav-link hover:text-brand-700">关于我们</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-100">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-2 text-sm">
+      <a href="index.html" class="block py-2 text-slate-600 hover:text-brand-700">首页</a>
+      <a href="major.html" class="block py-2 text-slate-600 hover:text-brand-700">专业介绍</a>
+      <a href="course.html" class="block py-2 text-slate-600 hover:text-brand-700">课程体系</a>
+      <a href="job.html" class="block py-2 text-slate-600 hover:text-brand-700">就业方向</a>
+      <a href="roadmap.html" class="block py-2 text-slate-600 hover:text-brand-700">学习路线</a>
+      <a href="survey.html" class="block py-2 text-brand-700 font-semibold">调研可视化</a>
+      <a href="about.html" class="block py-2 text-slate-600 hover:text-brand-700">关于我们</a>
+    </div>
+  </div>
+</nav>
+
+<div class="pt-24 pb-4 bg-slate-50 border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-slate-500">
+    <a href="index.html" class="hover:text-brand-700">首页</a> <span class="mx-2">›</span> <span class="text-slate-700 font-semibold">调研可视化</span>
+  </div>
+</div>
+
+<section class="py-16 page-transition">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl sm:text-4xl font-black text-slate-800 mb-2">大数据招聘数据集处理案例</h1>
+    <p class="text-slate-500 mb-4">本页面以<strong class="text-brand-700">大数据行业公开招聘数据集</strong>为数据源，完整演示从<strong class="text-brand-700">数据源选取 → 数据采集 → 数据清洗 → 统计建模 → 可视化呈现</strong>的大数据处理全流程，是大数据技术专科三年所学技术的综合落地演示。</p>
+
+    <!-- ========== 招聘数据集概览 ========== -->
+    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-8">
+      <h3 class="font-bold text-slate-800 mb-4">招聘数据集概览</h3>
+      <div class="grid md:grid-cols-4 gap-4 text-sm">
+        <div><span class="text-slate-500">数据源：</span><span class="font-semibold text-slate-700">行业公开大数据岗位招聘数据集</span></div>
+        <div><span class="text-slate-500">原始样本量：</span><span class="font-semibold text-slate-700">332 条（清洗后 326 条）</span></div>
+        <div><span class="text-slate-500">采集方式：</span><span class="font-semibold text-slate-700">模拟爬虫 / 开放接口</span></div>
+        <div><span class="text-slate-500">采集时间：</span><span class="font-semibold text-slate-700">2025 年 Q3</span></div>
+      </div>
+      <div class="mt-4 text-sm text-slate-600">
+        <strong>采集字段（共 5 个）：</strong>
+        <span class="inline-block px-2 py-0.5 bg-brand-50 border border-brand-200 rounded text-xs text-brand-700 font-semibold mr-1">岗位名称</span>
+        <span class="inline-block px-2 py-0.5 bg-brand-50 border border-brand-200 rounded text-xs text-brand-700 font-semibold mr-1">工作地点</span>
+        <span class="inline-block px-2 py-0.5 bg-brand-50 border border-brand-200 rounded text-xs text-brand-700 font-semibold mr-1">所需技能</span>
+        <span class="inline-block px-2 py-0.5 bg-brand-50 border border-brand-200 rounded text-xs text-brand-700 font-semibold mr-1">薪资区间</span>
+        <span class="inline-block px-2 py-0.5 bg-brand-50 border border-brand-200 rounded text-xs text-brand-700 font-semibold">招聘要求</span>
+        <span class="ml-2 text-xs text-slate-500">字段规范：岗位名称标准化、薪资统一区间格式、技能标签拆分去重</span>
+      </div>
+    </div>
+
+    <!-- ========== 大数据处理全流程（5步流水线） ========== -->
+    <h2 class="section-title text-xl font-bold text-slate-800 mb-2 ml-4">大数据处理全流程演示</h2>
+    <p class="text-sm text-slate-500 mb-6 ml-4">本案例完整走完大数据处理 5 步标准流水线，每一步都有对应的产出和操作痕迹。下方「每步深度展开」提供每一步的详细内容。</p>
+    <div class="flex flex-wrap items-center justify-center gap-3 mb-10">
+      <!-- Step 1 -->
+      <a href="#step1-detail" class="group bg-white rounded-xl p-4 border border-brand-200 shadow-sm text-center hover:shadow-lg hover:-translate-y-0.5 transition no-underline md:w-52">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">1</div>
+        <p class="font-bold text-slate-800 text-sm mb-1">数据源选取</p>
+        <p class="text-xs text-slate-500">确定招聘数据集 + 字段规范</p>
+      </a>
+      <span class="hidden md:block text-brand-400 text-2xl font-light select-none">→</span>
+
+      <!-- Step 2 -->
+      <a href="#step2-detail" class="group bg-white rounded-xl p-4 border border-brand-200 shadow-sm text-center hover:shadow-lg hover:-translate-y-0.5 transition no-underline md:w-52">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">2</div>
+        <p class="font-bold text-slate-800 text-sm mb-1">数据采集</p>
+        <p class="text-xs text-slate-500">模拟爬虫 / 开放接口 → 332 条原始数据</p>
+      </a>
+      <span class="hidden md:block text-brand-400 text-2xl font-light select-none">→</span>
+
+      <!-- Step 3 -->
+      <a href="#step3-detail" class="group bg-white rounded-xl p-4 border border-brand-200 shadow-sm text-center hover:shadow-lg hover:-translate-y-0.5 transition no-underline md:w-52">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">3</div>
+        <p class="font-bold text-slate-800 text-sm mb-1">数据清洗</p>
+        <p class="text-xs text-slate-500">去重 → 缺失 → 异常 → 326 条干净数据</p>
+      </a>
+      <span class="hidden md:block text-brand-400 text-2xl font-light select-none">→</span>
+
+      <!-- Step 4 -->
+      <a href="#step4-detail" class="group bg-white rounded-xl p-4 border border-brand-200 shadow-sm text-center hover:shadow-lg hover:-translate-y-0.5 transition no-underline md:w-52">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">4</div>
+        <p class="font-bold text-slate-800 text-sm mb-1">统计建模</p>
+        <p class="text-xs text-slate-500">频数分布 + 交叉表 + 衍生变量</p>
+      </a>
+      <span class="hidden md:block text-brand-400 text-2xl font-light select-none">→</span>
+
+      <!-- Step 5 -->
+      <a href="#step5-detail" class="group bg-white rounded-xl p-4 border border-brand-600 shadow-sm text-center hover:shadow-lg hover:-translate-y-0.5 transition no-underline md:w-52">
+        <div class="w-10 h-10 mx-auto mb-2 rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white flex items-center justify-center font-bold text-sm shadow-sm">5</div>
+        <p class="font-bold text-slate-800 text-sm mb-1">可视化呈现</p>
+        <p class="text-xs text-brand-700 font-semibold">本页下方 5 个 ECharts 图表</p>
+      </a>
+    </div>
+
+    <!-- ========== 每步深度展开 ========== -->
+    <h2 class="section-title text-xl font-bold text-slate-800 mb-6 ml-4">每步深度展开</h2>
+
+    <!-- Step 1: 数据源选取 -->
+    <div id="step1-detail" class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-5 scroll-mt-24">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white flex items-center justify-center font-bold text-sm shadow-sm flex-shrink-0">1</div>
+        <h3 class="font-bold text-slate-800">Step 1 · 数据源选取</h3>
+        <span class="text-xs text-brand-700 font-semibold bg-brand-50 px-2 py-0.5 rounded">确定采集目标 + 字段规范</span>
+      </div>
+      <p class="text-sm text-slate-600 mb-3">选用公开大数据行业招聘数据集，覆盖全国主要城市 2025 年 Q3 大数据岗位招聘信息。采集前先做字段设计，确保每个字段可量化、可对比。</p>
+      <div class="grid md:grid-cols-5 gap-2 text-xs">
+        <div class="bg-slate-50 rounded-lg p-3 border border-slate-100">
+          <div class="font-bold text-brand-700 mb-1">岗位名称</div>
+          <div class="text-slate-500">标准化为 5 大类（运维 / 分析 / 标注 / 可视化 / 算法）</div>
+        </div>
+        <div class="bg-slate-50 rounded-lg p-3 border border-slate-100">
+          <div class="font-bold text-brand-700 mb-1">工作地点</div>
+          <div class="text-slate-500">城市标签 + 区域分类（华北 / 华东 / 华南 / 西南）</div>
+        </div>
+        <div class="bg-slate-50 rounded-lg p-3 border border-slate-100">
+          <div class="font-bold text-brand-700 mb-1">所需技能</div>
+          <div class="text-slate-500">从招聘描述中提取、标签化、拆分去重</div>
+        </div>
+        <div class="bg-slate-50 rounded-lg p-3 border border-slate-100">
+          <div class="font-bold text-brand-700 mb-1">薪资区间</div>
+          <div class="text-slate-500">统一格式为 K/月，分 4 档区间标注</div>
+        </div>
+        <div class="bg-slate-50 rounded-lg p-3 border border-slate-100">
+          <div class="font-bold text-brand-700 mb-1">招聘要求</div>
+          <div class="text-slate-500">学历 + 经验年限 + 关键能力关键词</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 2: 数据采集 -->
+    <div id="step2-detail" class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-5 scroll-mt-24">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white flex items-center justify-center font-bold text-sm shadow-sm flex-shrink-0">2</div>
+        <h3 class="font-bold text-slate-800">Step 2 · 数据采集</h3>
+        <span class="text-xs text-brand-700 font-semibold bg-brand-50 px-2 py-0.5 rounded">模拟爬虫 / 开放接口</span>
+      </div>
+      <div class="grid md:grid-cols-4 gap-4 text-sm">
+        <div class="p-3 rounded-lg bg-slate-50 border border-slate-100">
+          <div class="text-slate-500 text-xs mb-1">原始样本量</div>
+          <div class="font-black text-2xl text-brand-700">332<span class="text-xs text-slate-500 ml-1">条</span></div>
+        </div>
+        <div class="p-3 rounded-lg bg-slate-50 border border-slate-100">
+          <div class="text-slate-500 text-xs mb-1">数据来源</div>
+          <div class="font-bold text-slate-800">公开开放数据平台</div>
+        </div>
+        <div class="p-3 rounded-lg bg-slate-50 border border-slate-100">
+          <div class="text-slate-500 text-xs mb-1">采集方式</div>
+          <div class="font-bold text-slate-800">模拟爬虫 + 开放 API</div>
+        </div>
+        <div class="p-3 rounded-lg bg-slate-50 border border-slate-100">
+          <div class="text-slate-500 text-xs mb-1">覆盖维度</div>
+          <div class="font-bold text-slate-800">5 类岗位 × 4 大区域</div>
+        </div>
+      </div>
+      <p class="text-xs text-slate-500 mt-3">采集流程：目标网站分析 → 模拟 HTTP 请求 → HTML 结构化解析（BeautifulSoup / Jsoup）→ 原始 JSON 存储 → 字段映射到 5 个标准字段</p>
+    </div>
+
+    <!-- Step 3: 数据清洗 -->
+    <div id="step3-detail" class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-5 scroll-mt-24">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white flex items-center justify-center font-bold text-sm shadow-sm flex-shrink-0">3</div>
+        <h3 class="font-bold text-slate-800">Step 3 · 数据清洗</h3>
+        <span class="text-xs text-brand-700 font-semibold bg-brand-50 px-2 py-0.5 rounded">去重 → 缺失 → 异常，损失率 1.8%</span>
+      </div>
+      <p class="text-sm text-slate-600 mb-4">按「去重 → 缺失 → 异常」三步依次剔除脏数据：先去重、再剔除关键字段为空的记录、最后处理薪资逻辑异常值。</p>
+      <div class="grid md:grid-cols-2 gap-6 items-center">
+        <div class="space-y-3">
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100">
+            <div>
+              <div class="font-bold text-slate-800 text-sm">① 去重（相同公司 + 相同岗位名）</div>
+              <div class="text-xs text-slate-500">332 条 → 329 条</div>
+            </div>
+            <span class="font-bold text-red-500 text-lg">-3 条</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100">
+            <div>
+              <div class="font-bold text-slate-800 text-sm">② 关键字段缺失（薪资 / 技能空值）</div>
+              <div class="text-xs text-slate-500">329 条 → 327 条</div>
+            </div>
+            <span class="font-bold text-red-500 text-lg">-2 条</span>
+          </div>
+          <div class="flex items-center justify-between p-3 bg-slate-50 rounded-lg border border-slate-100">
+            <div>
+              <div class="font-bold text-slate-800 text-sm">③ 薪资逻辑异常（＜3K 或 ＞50K）</div>
+              <div class="text-xs text-slate-500">327 条 → 326 条</div>
+            </div>
+            <span class="font-bold text-red-500 text-lg">-1 条</span>
+          </div>
+          <div class="p-4 rounded-lg bg-gradient-to-r from-brand-600 to-brand-800 text-white text-center">
+            <span class="text-xs opacity-80">总损失率</span>
+            <span class="font-black text-2xl ml-2">1.8%</span>
+            <span class="text-xs opacity-80 ml-2">332 → 326</span>
+          </div>
+        </div>
+        <div>
+          <p class="text-xs text-slate-500 mb-2 text-center">▶ 清洗过程漏斗可视化</p>
+          <div id="funnelChart" style="height:280px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Step 3 补充：清洗前后样例数据对比 -->
+    <div id="step3-supplement" class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-5 scroll-mt-24">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white flex items-center justify-center font-bold text-sm shadow-sm flex-shrink-0">3+</div>
+        <h3 class="font-bold text-slate-800">Step 3 补充 · 清洗前后样例数据对比（节选）</h3>
+        <span class="text-xs text-brand-700 font-semibold bg-brand-50 px-2 py-0.5 rounded">展示真实脏数据如何被处理</span>
+      </div>
+      <p class="text-sm text-slate-600 mb-3">下面列出 3 条从原始数据中挑出的典型脏数据，以及它们对应的清洗结果，直观感受三步清洗规则的效果。</p>
+      <div class="overflow-x-auto">
+        <table class="w-full text-sm border-collapse">
+          <thead>
+            <tr class="bg-slate-100 text-slate-700">
+              <th class="py-2 px-3 text-left font-semibold border-b border-slate-200">样例编号</th>
+              <th class="py-2 px-3 text-left font-semibold border-b border-slate-200">清洗前（脏数据）</th>
+              <th class="py-2 px-3 text-left font-semibold border-b border-slate-200">脏数据类型</th>
+              <th class="py-2 px-3 text-left font-semibold border-b border-slate-200">清洗后</th>
+            </tr>
+          </thead>
+          <tbody class="text-slate-600">
+            <tr class="border-b border-slate-100 hover:bg-slate-50">
+              <td class="py-2.5 px-3 font-semibold text-slate-800">①</td>
+              <td class="py-2.5 px-3 font-mono text-xs">某公司 · 数据分析师助理 · SQL,Python · 8-12K · 上海<br><span class="text-slate-400">（另一条完全相同的记录）</span></td>
+              <td class="py-2.5 px-3"><span class="inline-block px-2 py-0.5 rounded text-xs bg-red-50 text-red-700 font-semibold">重复记录</span></td>
+              <td class="py-2.5 px-3 font-mono text-xs text-emerald-700">只保留一条，另一条去除</td>
+            </tr>
+            <tr class="border-b border-slate-100 hover:bg-slate-50">
+              <td class="py-2.5 px-3 font-semibold text-slate-800">②</td>
+              <td class="py-2.5 px-3 font-mono text-xs">某公司 · 大数据运维工程师 · （空） · 15-20K · 北京</td>
+              <td class="py-2.5 px-3"><span class="inline-block px-2 py-0.5 rounded text-xs bg-amber-50 text-amber-700 font-semibold">技能字段缺失</span></td>
+              <td class="py-2.5 px-3 font-mono text-xs text-emerald-700">关键字段缺失，整条剔除</td>
+            </tr>
+            <tr class="hover:bg-slate-50">
+              <td class="py-2.5 px-3 font-semibold text-slate-800">③</td>
+              <td class="py-2.5 px-3 font-mono text-xs">某公司 · 数据可视化工程师 · ECharts,SQL · 2K-5K · 深圳</td>
+              <td class="py-2.5 px-3"><span class="inline-block px-2 py-0.5 rounded text-xs bg-purple-50 text-purple-700 font-semibold">薪资逻辑异常</span></td>
+              <td class="py-2.5 px-3 font-mono text-xs text-emerald-700">薪资上限＜3K，不符合招聘常理，剔除</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Step 4: 统计建模 -->
+    <div id="step4-detail" class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-5 scroll-mt-24">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white flex items-center justify-center font-bold text-sm shadow-sm flex-shrink-0">4</div>
+        <h3 class="font-bold text-slate-800">Step 4 · 统计建模</h3>
+        <span class="text-xs text-brand-700 font-semibold bg-brand-50 px-2 py-0.5 rounded">频数分布 + 交叉表 + 衍生变量构造</span>
+      </div>
+      <p class="text-sm text-slate-600 mb-3">对清洗后的 326 条干净数据，从「描述统计 → 交叉关联 → 衍生标签」三个层级进行建模，挖掘招聘市场的行业规律。</p>
+      <div class="grid md:grid-cols-3 gap-3 text-sm">
+        <div class="p-3 rounded-lg border border-slate-100 bg-slate-50">
+          <div class="font-bold text-slate-800 mb-2">📊 频数分布统计</div>
+          <div class="text-slate-600 text-xs leading-relaxed">统计 5 类岗位数量占比、7 项核心技能出现频次、4 档薪资区间分布，识别大数据招聘市场的基本结构。</div>
+        </div>
+        <div class="p-3 rounded-lg border border-slate-100 bg-slate-50">
+          <div class="font-bold text-slate-800 mb-2">🔗 交叉关联分析</div>
+          <div class="text-slate-600 text-xs leading-relaxed">岗位 × 技能 覆盖率矩阵（运维岗技能要求 vs 算法岗技能要求）、岗位 × 薪资 均值对比，发现技能与薪资的关联关系。</div>
+        </div>
+        <div class="p-3 rounded-lg border border-slate-100 bg-slate-50">
+          <div class="font-bold text-slate-800 mb-2">🏷️ 衍生变量构造</div>
+          <div class="text-slate-600 text-xs leading-relaxed">按技能组合构造"基础型（SQL+Python）/ 进阶型（+Spark+Linux）/ 专家型（+Kafka+Hadoop）"标签，划分岗位能力层级。</div>
+        </div>
+      </div>
+      <!-- 建模层可视化：岗位 × 技能 覆盖率热力图 -->
+      <div class="mt-5 p-4 rounded-xl bg-slate-50 border border-slate-100">
+        <div class="flex items-center justify-between mb-2">
+          <p class="font-bold text-slate-800 text-sm">📐 建模产出可视化：岗位 × 技能 覆盖率矩阵（热力图）</p>
+          <span class="text-xs text-slate-500">交叉关联分析的直接产出</span>
+        </div>
+        <div id="heatmapChart" class="chart-container" style="height:340px;"></div>
+        <p class="text-xs text-slate-500 mt-2">颜色越深表示该技能在对应岗位中的覆盖率越高。运维岗对 Linux/Hadoop 要求突出，算法岗对 Spark/SQL/Python 覆盖最广，SQL 是所有岗位的共同必备项。</p>
+      </div>
+    </div>
+
+    <!-- Step 5: 可视化呈现 -->
+    <div id="step5-detail" class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-8 scroll-mt-24">
+      <div class="flex items-center gap-3 mb-3">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-brand-500 to-brand-800 text-white flex items-center justify-center font-bold text-sm flex-shrink-0">5</div>
+        <h3 class="font-bold text-slate-800">Step 5 · 可视化呈现</h3>
+        <span class="text-xs text-brand-700 font-semibold bg-brand-50 px-2 py-0.5 rounded">ECharts · 多维度洞察</span>
+      </div>
+      <p class="text-sm text-slate-600 mb-3">使用 ECharts 5.5 对建模结果做多维度可视化呈现，将枯燥的统计表转化为直观的图形，让数据洞察一目了然。本案例共生成 <strong class="text-brand-700">4 类图表</strong>：</p>
+      <div class="grid md:grid-cols-4 gap-3 text-sm">
+        <div class="p-3 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+          <div class="font-bold text-brand-700 mb-1">柱线组合图</div>
+          <div class="text-xs text-slate-500">技能频次 + 覆盖率<br>双 Y 轴，主次分明</div>
+        </div>
+        <div class="p-3 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+          <div class="font-bold text-brand-700 mb-1">环形饼图</div>
+          <div class="text-xs text-slate-500">岗位市场占比<br>展示各岗位份额</div>
+        </div>
+        <div class="p-3 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+          <div class="font-bold text-brand-700 mb-1">柱状图</div>
+          <div class="text-xs text-slate-500">薪资区间分布<br>招聘量直观对比</div>
+        </div>
+        <div class="p-3 rounded-lg bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-100">
+          <div class="font-bold text-brand-700 mb-1">漏斗图</div>
+          <div class="text-xs text-slate-500">数据清洗损耗<br>332→326 全过程</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== Step 5 产出 · 可视化成果展示（5 个 ECharts 图表）========== -->
+    <h2 class="section-title text-xl font-bold text-slate-800 mb-2 ml-4">Step 5 产出 · 可视化成果展示</h2>
+    <p class="text-sm text-slate-500 mb-6 ml-4">以下全部图表均基于 Step 4 统计建模产出的数据绘制而成，覆盖柱线组合、环形饼图、柱状图、漏斗图、热力图共 5 种 ECharts 图表类型。</p>
+
+    <!-- 图表 ①：技能需求柱线组合 -->
+    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-6">
+      <h3 class="font-bold text-slate-800 mb-1">核心发现：大数据岗位技能需求分布</h3>
+      <p class="text-sm text-slate-500 mb-4">柱状图 = 技能出现次数（左 Y 轴），折线 = 覆盖率（右 Y 轴，该技能在所有有效招聘中的占比），双 Y 轴设计</p>
+      <div id="skillChart" class="chart-container" style="height:420px;"></div>
+      <div class="mt-3 p-4 rounded-lg border-l-4 border-brand-600 bg-brand-50">
+        <p class="text-sm font-bold text-slate-800 mb-2">🔍 三维度关键洞察</p>
+        <div class="grid md:grid-cols-3 gap-3 text-xs text-slate-600">
+          <div><strong class="text-brand-700">技能覆盖：</strong>SQL（87.7%）、Python（80.1%）是大数据岗位必备双核技能，<strong class="text-orange-600">覆盖近 9 成岗位</strong>。</div>
+          <div><strong class="text-brand-700">平台技术：</strong>Spark（47.9%）> Hadoop（39.9%）> Kafka（22.1%），Spark 已取代 Hadoop 成为主流计算框架。</div>
+          <div><strong class="text-brand-700">技术栈结构：</strong>SQL/Python/Java 是基础三件套，Spark/Hadoop/Linux 构成进阶能力层，专科三年需分阶段覆盖。</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 图表 ② + ③：岗位饼图 + 薪资柱状图 -->
+    <div class="grid lg:grid-cols-2 gap-6 mb-10">
+      <!-- 岗位占比环形饼图 -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+        <h3 class="font-bold text-slate-800 mb-1">大数据岗位市场占比（环形饼图）</h3>
+        <p class="text-sm text-slate-500 mb-4">清洗后 326 条有效数据，5 类主流大数据岗位 + 其他</p>
+        <div id="pieChart" class="chart-container" style="height:340px;"></div>
+        <div class="mt-3 p-3 rounded-lg border-l-4 border-brand-600 bg-brand-50">
+          <p class="text-xs text-slate-600"><strong class="text-brand-700">📌 洞察：</strong>运维（26.1%）需求最大，是企业保障平台稳定的刚需；标注/治理（18.4%）紧跟 AI 风口；算法（7.4%）门槛最高（本科+），专科生主流集中在运维、分析、标注、可视化四类。</p>
+        </div>
+      </div>
+      <!-- 薪资区间柱状图 -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+        <h3 class="font-bold text-slate-800 mb-1">大数据岗位薪资区间分布（专科）</h3>
+        <p class="text-sm text-slate-500 mb-4">以 K/月 为单位，326 条干净数据中各薪资档位的招聘量</p>
+        <div id="salaryChart" class="chart-container" style="height:340px;"></div>
+        <div class="mt-3 p-3 rounded-lg border-l-4 border-brand-600 bg-brand-50">
+          <p class="text-xs text-slate-600"><strong class="text-brand-700">📌 洞察：</strong>12K-18K 是专科毕业生主流薪资区间（45.7%）；25K+ 高薪岗位占比 7.7%，多集中在一线城市且要求 2 年以上经验。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 跳转到关于我们 -->
+    <a href="about.html" class="block bg-gradient-to-r from-brand-600 to-brand-800 text-white rounded-2xl p-5 shadow-lg hover:shadow-xl transition">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm opacity-80">这个招聘数据集案例是怎么综合三年所学的？</p>
+          <p class="font-bold text-lg">看看本网站如何融合大一 Web、大二大数据、大三可视化 →</p>
+        </div>
+        <svg class="w-8 h-8 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer class="bg-slate-900 text-slate-400 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="mb-3 text-sm">
+      <a href="index.html" class="hover:text-brand-500 mx-2">首页</a>·
+      <a href="major.html" class="hover:text-brand-500 mx-2">专业介绍</a>·
+      <a href="course.html" class="hover:text-brand-500 mx-2">课程体系</a>·
+      <a href="job.html" class="hover:text-brand-500 mx-2">就业方向</a>·
+      <a href="roadmap.html" class="hover:text-brand-500 mx-2">学习路线</a>·
+      <a href="survey.html" class="hover:text-brand-500 mx-2">调研可视化</a>·
+      <a href="about.html" class="hover:text-brand-500 mx-2">关于我们</a>
+    </div>
+    <p class="text-xs">大数据技术专业认知网站 · 大数据技术专科三年学习成果综合展示 · 课程设计项目 · © 2025</p>
+  </div>
+</footer>
+
+<script src="assets/shared.js"></script>
+<script>
+  initNavbar('survey.html');
+
+  (function(){
+    var chart = echarts.init(document.getElementById('skillChart'));
+    registerChart(chart);
+    chart.setOption({
+      tooltip:{trigger:'axis',axisPointer:{type:'cross'}},
+      legend:{data:['出现次数','覆盖率'],bottom:0},
+      grid:{left:'3%',right:'4%',bottom:'15%',containLabel:true},
+      xAxis:{type:'category',data:['SQL','Python','Java','Spark','Hadoop','Linux','Kafka'],axisLabel:{interval:0,fontSize:11}},
+      yAxis:[
+        {type:'value',name:'出现次数',nameTextStyle:{fontSize:11},splitLine:{show:true,lineStyle:{color:'#f1f5f9'}}},
+        {type:'value',name:'覆盖率 (%)',nameTextStyle:{fontSize:11},max:100,axisLabel:{formatter:'{value}%'},splitLine:{show:false}}
+      ],
+      series:[
+        {
+          name:'出现次数',type:'bar',barWidth:'45%',
+          itemStyle:{borderRadius:[6,6,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#3D7BFF'},{offset:1,color:'#165DFF'}])},
+          data:[286,261,195,156,130,104,72]
+        },
+        {
+          name:'覆盖率',type:'line',yAxisIndex:1,smooth:true,symbolSize:10,
+          itemStyle:{color:'#ea580c'},lineStyle:{width:3,color:'#ea580c'},
+          label:{show:true,position:'top',formatter:'{c}%',fontSize:11,fontWeight:'bold',color:'#ea580c'},
+          data:[87.7,80.1,59.8,47.9,39.9,31.9,22.1]
+        }
+      ]
+    });
+  })();
+
+  (function(){
+    var chart = echarts.init(document.getElementById('funnelChart'));
+    registerChart(chart);
+    chart.setOption({
+      tooltip:{trigger:'item',formatter:'{b}: {c} 条'},
+      series:[{
+        type:'funnel',
+        left:'10%',
+        top:10,
+        bottom:10,
+        width:'80%',
+        min:0,
+        max:340,
+        minSize:'30%',
+        maxSize:'100%',
+        sort:'descending',
+        gap:2,
+        label:{show:true,position:'inside',fontSize:11,fontWeight:'bold',color:'#fff',
+          formatter:function(p){return p.name+'\n'+p.value+' 条'}},
+        itemStyle:{borderColor:'#fff',borderWidth:2,borderRadius:[4,4,4,4]},
+        data:[
+          {value:332,name:'原始数据',itemStyle:{color:'#3D7BFF'}},
+          {value:329,name:'去重后',itemStyle:{color:'#165DFF'}},
+          {value:327,name:'缺失处理',itemStyle:{color:'#4F46E5'}},
+          {value:326,name:'干净数据',itemStyle:{color:'#0EA5E9'}}
+        ]
+      }]
+    });
+  })();
+
+  (function(){
+    var chart = echarts.init(document.getElementById('pieChart'));
+    registerChart(chart);
+    chart.setOption({
+      tooltip:{trigger:'item',formatter:'{b}: {c} 条 ({d}%)'},
+      legend:{orient:'vertical',right:'5%',top:'center',itemWidth:12,itemHeight:12,textStyle:{fontSize:12}},
+      color:['#165DFF','#3D7BFF','#60A5FA','#4F46E5','#0EA5E9','#94A3B8'],
+      series:[{
+        type:'pie',
+        radius:['42%','68%'],
+        center:['38%','50%'],
+        avoidLabelOverlap:true,
+        itemStyle:{borderRadius:6,borderColor:'#fff',borderWidth:2},
+        label:{show:true,position:'outside',formatter:'{d}%',fontSize:11,fontWeight:'bold',color:'#475569'},
+        labelLine:{length:8,length2:6},
+        emphasis:{label:{show:true,fontSize:14,fontWeight:'bold'}},
+        data:[
+          {value:85,name:'大数据运维工程师'},
+          {value:69,name:'数据分析师助理'},
+          {value:60,name:'数据标注/治理'},
+          {value:48,name:'数据可视化工程师'},
+          {value:24,name:'机器学习/算法'},
+          {value:40,name:'其他'}
+        ]
+      }]
+    });
+  })();
+
+  (function(){
+    var chart = echarts.init(document.getElementById('salaryChart'));
+    registerChart(chart);
+    chart.setOption({
+      tooltip:{trigger:'axis',axisPointer:{type:'shadow'},formatter:function(p){
+        var d = p[0]; return d.name+'<br/>招聘量：'+d.value+' 条 ('+(d.value/326*100).toFixed(1)+'%)'
+      }},
+      grid:{left:'3%',right:'4%',bottom:'8%',containLabel:true},
+      xAxis:{type:'category',data:['8K-12K','12K-18K','18K-25K','25K+'],axisLabel:{fontSize:12}},
+      yAxis:{type:'value',name:'招聘量（条）',splitLine:{lineStyle:{color:'#f1f5f9'}}},
+      series:[{
+        type:'bar',
+        barWidth:'52%',
+        itemStyle:{
+          borderRadius:[6,6,0,0],
+          color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#3D7BFF'},{offset:1,color:'#165DFF'}])
+        },
+        label:{show:true,position:'top',formatter:'{c} 条',fontSize:11,fontWeight:'bold',color:'#165DFF'},
+        data:[72,149,80,25]
+      }]
+    });
+  })();
+
+  // 新增：岗位 × 技能 覆盖率热力图
+  (function(){
+    var chart = echarts.init(document.getElementById('heatmapChart'));
+    registerChart(chart);
+    var skills = ['SQL','Python','Java','Spark','Hadoop','Linux','Kafka'];
+    var jobs   = ['大数据运维','数据分析助理','数据标注治理','数据可视化','机器学习算法'];
+    // 交叉覆盖率矩阵（%），基于饼图岗位分布 + 技能频次交叉估算
+    var raw = [
+      [80,60,70,40,70,85,30],   // 运维
+      [95,90,50,35,15,20,10],   // 分析助理
+      [70,75,55,30,25,35,15],   // 标注治理
+      [85,80,40,25,15,20,10],   // 可视化
+      [90,95,60,85,35,45,40]    // 算法
+    ];
+    var data = [];
+    for (var i=0;i<jobs.length;i++){
+      for (var j=0;j<skills.length;j++){
+        data.push([j,i,raw[i][j]]);
+      }
+    }
+    chart.setOption({
+      tooltip:{position:'top',formatter:function(p){return jobs[p.value[1]]+' × '+skills[p.value[0]]+'<br/>覆盖率：<b>'+p.value[2]+'%</b>'}},
+      grid:{left:'18%',right:'5%',top:'3%',bottom:'12%'},
+      xAxis:{type:'category',data:skills,splitArea:{show:true},axisLabel:{fontSize:11,fontWeight:'bold'}},
+      yAxis:{type:'category',data:jobs,splitArea:{show:true},axisLabel:{fontSize:11}},
+      visualMap:{
+        min:0,max:100,calculable:true,orient:'horizontal',left:'center',bottom:0,
+        textStyle:{fontSize:11},formatter:'{value}%',
+        inRange:{color:['#EFF6FF','#BFDBFE','#60A5FA','#3D7BFF','#165DFF','#0B4CC4']}
+      },
+      series:[{
+        type:'heatmap',data:data,
+        itemStyle:{borderColor:'#fff',borderWidth:2,borderRadius:4},
+        label:{show:true,fontSize:11,fontWeight:'bold',color:function(p){return p.value[2]>60?'#fff':'#475569'},formatter:function(p){return p.value[2]+'%'}}
+      }]
+    });
+  })();
+</script>
+</body>
+</html>
