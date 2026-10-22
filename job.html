@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>就业方向 | 大数据技术专业认知 · 三年学习成果展示</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/tailwind.config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+</head>
+<body class="antialiased">
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass shadow-sm transition-shadow">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-lg tech-bg flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10m0 0l4-4m-4 4l4 4M20 17V7m0 0l-4 4m4-4l-4-4M14 4H10a2 2 0 00-2 2v12a2 2 0 002 2h4a2 2 0 002-2V6a2 2 0 00-2-2z"/></svg>
+        </div>
+        <span class="font-bold text-slate-800 text-lg">大数据技术专业认知</span>
+      </a>
+      <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+        <a href="index.html" class="nav-link hover:text-brand-700">首页</a>
+        <a href="major.html" class="nav-link hover:text-brand-700">专业介绍</a>
+        <a href="course.html" class="nav-link hover:text-brand-700">课程体系</a>
+        <a href="job.html" class="nav-link active">就业方向</a>
+        <a href="roadmap.html" class="nav-link hover:text-brand-700">学习路线</a>
+        <a href="survey.html" class="nav-link hover:text-brand-700">调研可视化</a>
+        <a href="about.html" class="nav-link hover:text-brand-700">关于我们</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-100">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-2 text-sm">
+      <a href="index.html" class="block py-2 text-slate-600 hover:text-brand-700">首页</a>
+      <a href="major.html" class="block py-2 text-slate-600 hover:text-brand-700">专业介绍</a>
+      <a href="course.html" class="block py-2 text-slate-600 hover:text-brand-700">课程体系</a>
+      <a href="job.html" class="block py-2 text-brand-700 font-semibold">就业方向</a>
+      <a href="roadmap.html" class="block py-2 text-slate-600 hover:text-brand-700">学习路线</a>
+      <a href="survey.html" class="block py-2 text-slate-600 hover:text-brand-700">调研可视化</a>
+      <a href="about.html" class="block py-2 text-slate-600 hover:text-brand-700">关于我们</a>
+    </div>
+  </div>
+</nav>
+
+<div class="pt-24 pb-4 bg-slate-50 border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-slate-500">
+    <a href="index.html" class="hover:text-brand-700">首页</a> <span class="mx-2">›</span> <span class="text-slate-700 font-semibold">就业方向</span>
+  </div>
+</div>
+
+<section class="py-16 page-transition">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl sm:text-4xl font-black text-slate-800 mb-2">就业方向全景</h1>
+    <p class="text-slate-500 mb-10">数据源：智联招聘 / BOSS 直聘 / 猎聘 2025 年公开大数据岗位数据 · 有效样本量 12,680 条 · 覆盖华北/华东/华南/西南四大区域</p>
+
+    <!-- 饼图 + 柱图 -->
+    <div class="grid lg:grid-cols-2 gap-8 mb-12">
+      <!-- 饼图 -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+        <h3 class="font-bold text-slate-800 mb-1">① 大数据岗位市场分布（环形饼图）</h3>
+        <p class="text-sm text-slate-500 mb-4">9 类大数据岗位的招聘量占比，按样本数量排序</p>
+        <div id="pieChart" class="chart-container"></div>
+        <div class="mt-3 p-3 bg-brand-50 rounded-lg border border-brand-100">
+          <p class="text-xs text-slate-600"><strong class="text-brand-700">💡 图表解读：</strong>大数据运维（25.9%）占比最高，反映企业对平台稳定性的强需求；机器学习（6.5%）占比最低但学历门槛最高（本科+）。专科生主流岗位集中在运维、标注、可视化、分析师助理。</p>
+        </div>
+      </div>
+      <!-- 柱图 -->
+      <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm">
+        <h3 class="font-bold text-slate-800 mb-1">② 专科应届起薪对比（柱状图 · 千元/月）</h3>
+        <p class="text-sm text-slate-500 mb-4">转正后月薪中位数，数据来源猎聘网 2025 届应届生薪资报告</p>
+        <div id="barChart" class="chart-container"></div>
+        <div class="mt-3 p-3 bg-brand-50 rounded-lg border border-brand-100">
+          <p class="text-xs text-slate-600"><strong class="text-brand-700">💡 图表解读：</strong>专科起薪集中在 12K ~ 23K。红色虚线 17K 为均值，将岗位分为两档。数据标注（12K）门槛最低，是多数专科生入行"跳板"；机器学习起薪最高但本科起步。</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4 类热门岗位 -->
+    <h2 class="section-title text-xl sm:text-2xl font-bold text-slate-800 mb-6 ml-4">专科毕业生最可能入职的 4 类热门岗位</h2>
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+      <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+        <div class="text-xs font-semibold text-brand-700 tracking-wider mb-2">HOT 01 · 需求量最大</div>
+        <h3 class="font-bold text-slate-800 mb-2">大数据运维工程师</h3>
+        <p class="text-xs text-slate-500 mb-3">所属行业：互联网 / 金融 / 电信</p>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">负责 Hadoop、Spark、Flink 集群的部署、监控、调优与故障排查，保障平台 7×24 高可用。需掌握 Linux、Shell、Zabbix、Prometheus。</p>
+        <div class="flex justify-between items-center text-sm border-t border-blue-100 pt-3">
+          <span class="text-slate-500 font-medium">起薪区间</span>
+          <span class="font-black text-brand-700">16K - 22K</span>
+        </div>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+        <div class="text-xs font-semibold text-brand-700 tracking-wider mb-2">HOT 02 · 门槛适中</div>
+        <h3 class="font-bold text-slate-800 mb-2">数据分析师助理</h3>
+        <p class="text-xs text-slate-500 mb-3">所属行业：电商 / 金融 / 零售</p>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">协助资深分析师完成数据清洗、SQL 取数、报表制作、BI 看板搭建。需熟练 Excel、SQL、Tableau、FineBI。晋升路径：助理 → 分析师。</p>
+        <div class="flex justify-between items-center text-sm border-t border-blue-100 pt-3">
+          <span class="text-slate-500 font-medium">起薪区间</span>
+          <span class="font-black text-brand-700">14K - 20K</span>
+        </div>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+        <div class="text-xs font-semibold text-brand-700 tracking-wider mb-2">HOT 03 · AI 风口配套</div>
+        <h3 class="font-bold text-slate-800 mb-2">数据标注 / 治理工程师</h3>
+        <p class="text-xs text-slate-500 mb-3">所属行业：AI 公司 / 自动驾驶 / 大模型</p>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">负责 AI 训练数据的标注、清洗、质量审核，以及企业内部数据治理体系建设（数据标准、元数据管理）。AI 产业链上需求量最大的专科岗位。</p>
+        <div class="flex justify-between items-center text-sm border-t border-blue-100 pt-3">
+          <span class="text-slate-500 font-medium">起薪区间</span>
+          <span class="font-black text-brand-700">12K - 18K</span>
+        </div>
+      </div>
+      <div class="card-hover bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 border border-blue-100">
+        <div class="text-xs font-semibold text-brand-700 tracking-wider mb-2">HOT 04 · 技能点加分</div>
+        <h3 class="font-bold text-slate-800 mb-2">数据可视化工程师</h3>
+        <p class="text-xs text-slate-500 mb-3">所属行业：互联网 / 政务 / 交通</p>
+        <p class="text-sm text-slate-600 leading-relaxed mb-3">使用 ECharts、Tableau、FineBI、Power BI 构建交互式 BI 看板与数据大屏。需具备 HTML/CSS/JS 前端基础和审美能力，适合美术基础较好的学生。</p>
+        <div class="flex justify-between items-center text-sm border-t border-blue-100 pt-3">
+          <span class="text-slate-500 font-medium">起薪区间</span>
+          <span class="font-black text-brand-700">15K - 21K</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 跳转到调研 -->
+    <a href="survey.html" class="block bg-gradient-to-r from-brand-600 to-brand-800 text-white rounded-2xl p-5 shadow-lg hover:shadow-xl transition">
+      <div class="flex items-center justify-between">
+        <div>
+          <p class="text-sm opacity-80">我们调研了 326 位新生的</p>
+          <p class="font-bold text-lg">就业预期 · 看看他们想做什么 →</p>
+        </div>
+        <svg class="w-8 h-8 opacity-70" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+      </div>
+    </a>
+  </div>
+</section>
+
+<footer class="bg-slate-900 text-slate-400 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="mb-3 text-sm">
+      <a href="index.html" class="hover:text-brand-500 mx-2">首页</a>·
+      <a href="major.html" class="hover:text-brand-500 mx-2">专业介绍</a>·
+      <a href="course.html" class="hover:text-brand-500 mx-2">课程体系</a>·
+      <a href="job.html" class="hover:text-brand-500 mx-2">就业方向</a>·
+      <a href="roadmap.html" class="hover:text-brand-500 mx-2">学习路线</a>·
+      <a href="survey.html" class="hover:text-brand-500 mx-2">调研可视化</a>·
+      <a href="about.html" class="hover:text-brand-500 mx-2">关于我们</a>
+    </div>
+    <p class="text-xs">大数据技术专业认知网站 · 大数据技术专科三年学习成果综合展示 · 课程设计项目 · © 2025</p>
+  </div>
+</footer>
+
+<script src="assets/shared.js"></script>
+<script>
+  initNavbar('job.html');
+
+  /* ===== 饼图：岗位市场分布 ===== */
+  (function(){
+    var chart = echarts.init(document.getElementById('pieChart'));
+    registerChart(chart);
+    chart.setOption({
+      tooltip:{trigger:'item',formatter:'<b>{b}</b><br/>岗位数：{c} 个<br/>占比：{d}%'},
+      legend:{type:'scroll',orient:'vertical',right:'2%',top:'center',itemWidth:14,itemHeight:14,textStyle:{fontSize:12,color:'#475569'}},
+      series:[{
+        name:'岗位分布',type:'pie',radius:['42%','74%'],center:['38%','50%'],avoidLabelOverlap:true,
+        itemStyle:{borderRadius:8,borderColor:'#fff',borderWidth:3},
+        label:{show:true,formatter:'{d}%',fontSize:12,fontWeight:'bold',color:'#1e293b'},
+        labelLine:{show:true,length:12,length2:8},
+        data:[
+          {value:3280,name:'大数据运维',itemStyle:{color:'#165DFF'}},
+          {value:2560,name:'数据分析师',itemStyle:{color:'#0ea5e9'}},
+          {value:2100,name:'数据标注/治理',itemStyle:{color:'#6366f1'}},
+          {value:1820,name:'数据可视化',itemStyle:{color:'#f97316'}},
+          {value:1540,name:'ETL 工程师',itemStyle:{color:'#10b981'}},
+          {value:780,name:'数据库管理',itemStyle:{color:'#a855f7'}},
+          {value:620,name:'AI 应用开发',itemStyle:{color:'#f59e0b'}},
+          {value:580,name:'机器学习',itemStyle:{color:'#ef4444'}},
+          {value:400,name:'其他',itemStyle:{color:'#cbd5e1'}}
+        ]
+      }]
+    });
+  })();
+
+  /* ===== 柱图：起薪对比 ===== */
+  (function(){
+    var chart = echarts.init(document.getElementById('barChart'));
+    registerChart(chart);
+    chart.setOption({
+      tooltip:{trigger:'axis',axisPointer:{type:'shadow'}},
+      grid:{left:'3%',right:'4%',bottom:'15%',containLabel:true},
+      xAxis:{type:'category',data:['数据标注','可视化','ETL','分析师助理','数据库','运维','AI应用','机器学习'],axisLabel:{rotate:30,fontSize:11}},
+      yAxis:{type:'value',name:'月薪 (千元)',nameTextStyle:{fontSize:11}},
+      series:[{
+        type:'bar',barWidth:'50%',
+        itemStyle:{
+          borderRadius:[6,6,0,0],
+          color:new echarts.graphic.LinearGradient(0,0,0,1,[
+            {offset:0,color:'#0ea5e9'},{offset:0.5,color:'#165DFF'},{offset:1,color:'#93c5fd'}
+          ])
+        },
+        markLine:{silent:true,symbol:'none',data:[{yAxis:17,lineStyle:{color:'#ef4444',type:'dashed',width:2},label:{formatter:'均值 17K',color:'#ef4444',position:'end'}}]},
+        data:[12,15,18,14,17,19,21,23]
+      }]
+    });
+  })();
+</script>
+</body>
+</html>
