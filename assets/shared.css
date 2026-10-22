@@ -1,0 +1,136 @@
+/* ============================================================
+ * 共享样式文件 - 全站通用（华丽升级版）
+ * 主色调：#165DFF（科技蓝）· 辅色：#06B6D4 青 / #7C3AED 紫
+ * ============================================================ */
+
+*{box-sizing:border-box;font-family:'Noto Sans SC',system-ui,sans-serif;}
+html{scroll-behavior:smooth;}
+body{background:#f8fafc;color:#0f172a;}
+
+/* ---------- 选中文字 ---------- */
+::selection{background:#165DFF;color:#fff;}
+
+/* ---------- 自定义滚动条 ---------- */
+::-webkit-scrollbar{width:10px;height:10px;}
+::-webkit-scrollbar-track{background:#eef2f7;}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,#165DFF,#3D7BFF);border-radius:8px;border:2px solid #eef2f7;}
+::-webkit-scrollbar-thumb:hover{background:linear-gradient(180deg,#0E48D4,#165DFF);}
+html{scrollbar-width:thin;scrollbar-color:#165DFF #eef2f7;}
+
+/* ---------- 科技蓝渐变背景（Hero区/Logo块）加宽色域并缓慢流动 ---------- */
+.tech-bg{background:linear-gradient(135deg,#041A52 0%,#0A37A8 30%,#165DFF 60%,#4F46E5 100%);background-size:200% 200%;animation:gradientFlow 14s ease infinite;}
+@keyframes gradientFlow{0%,100%{background-position:0% 50%;}50%{background-position:100% 50%;}}
+
+/* ---------- Hero 专属：赛博网格纹理（仅 section 级，避免影响 Logo 小块） ---------- */
+section.tech-bg::before{content:'';position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:52px 52px;-webkit-mask-image:radial-gradient(ellipse at 50% 40%,black 25%,transparent 78%);mask-image:radial-gradient(ellipse at 50% 40%,black 25%,transparent 78%);pointer-events:none;}
+
+/* ---------- Hero 标题流光文字 ---------- */
+.tech-bg h1 span{background:linear-gradient(90deg,#BFDBFE,#67E8F9,#E0E7FF,#BFDBFE);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmerText 4s linear infinite;}
+@keyframes shimmerText{to{background-position:200% center;}}
+
+/* ---------- Hero 按钮：自动扫光 ---------- */
+.tech-bg a[class*="px-8"]{position:relative;overflow:hidden;isolation:isolate;}
+.tech-bg a[class*="px-8"]::after{content:'';position:absolute;top:0;left:-80%;width:45%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:shineSweep 3.6s ease-in-out infinite;pointer-events:none;}
+@keyframes shineSweep{0%,55%{left:-80%;}90%,100%{left:135%;}}
+
+/* ---------- Hero 统计数字：发光 + 等宽数字 + 卡片悬浮 ---------- */
+.tech-bg .grid .text-3xl{text-shadow:0 0 28px rgba(103,232,249,.5),0 0 6px rgba(255,255,255,.3);font-variant-numeric:tabular-nums;}
+.tech-bg .grid > div{transition:transform .3s ease,background .3s ease,border-color .3s ease;}
+.tech-bg .grid > div:hover{transform:translateY(-4px) scale(1.03);background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.35);}
+
+/* ---------- Hero 光晕球 & 粒子画布（JS 注入） ---------- */
+.hero-orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.35;pointer-events:none;z-index:0;}
+.hero-orb.o1{width:420px;height:420px;top:-120px;left:-80px;background:radial-gradient(circle,#22d3ee,transparent 70%);animation:orbFloat1 18s ease-in-out infinite;}
+.hero-orb.o2{width:380px;height:380px;bottom:-140px;right:-60px;background:radial-gradient(circle,#a78bfa,transparent 70%);animation:orbFloat2 22s ease-in-out infinite;}
+.hero-orb.o3{width:300px;height:300px;top:30%;left:45%;background:radial-gradient(circle,#60a5fa,transparent 70%);animation:orbFloat3 20s ease-in-out infinite;}
+.hero-particles{position:absolute;inset:0;z-index:1;pointer-events:none;}
+
+/* ---------- 全局极光背景（JS 注入，浅色页面柔和氛围） ---------- */
+.global-aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;}
+.global-aurora .orb{position:absolute;border-radius:50%;filter:blur(100px);opacity:.45;}
+.orb-a{width:520px;height:520px;left:-160px;top:-120px;background:radial-gradient(circle,#B8CFFF,transparent 70%);animation:orbFloat1 24s ease-in-out infinite;}
+.orb-b{width:460px;height:460px;right:-140px;top:30%;background:radial-gradient(circle,#A5F3FC,transparent 70%);animation:orbFloat2 28s ease-in-out infinite;}
+.orb-c{width:420px;height:420px;left:30%;bottom:-180px;background:radial-gradient(circle,#DDD6FE,transparent 70%);animation:orbFloat3 26s ease-in-out infinite;}
+@keyframes orbFloat1{0%,100%{transform:translate(0,0);}50%{transform:translate(70px,45px);}}
+@keyframes orbFloat2{0%,100%{transform:translate(0,0);}50%{transform:translate(-60px,55px);}}
+@keyframes orbFloat3{0%,100%{transform:translate(0,0);}50%{transform:translate(50px,-50px);}}
+/* 保证极光层垫底（导航栏除外，其本身 fixed 高 z-index） */
+body > *:not(.global-aurora):not(#scrollProgress):not(#backToTop):not(#navbar){position:relative;z-index:1;}
+
+/* ---------- 顶部滚动进度条（JS 注入） ---------- */
+#scrollProgress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:9999;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#165DFF,#06B6D4,#7C3AED);box-shadow:0 0 10px rgba(22,93,255,.5);}
+
+/* ---------- 返回顶部按钮（JS 注入） ---------- */
+#backToTop{position:fixed;right:24px;bottom:28px;z-index:9998;width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,#165DFF,#06B6D4);color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer;border:none;box-shadow:0 8px 24px -6px rgba(22,93,255,.55);opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;transition:all .35s ease;}
+#backToTop.show{opacity:1;transform:none;pointer-events:auto;}
+#backToTop:hover{transform:translateY(-3px);box-shadow:0 14px 30px -6px rgba(22,93,255,.65);}
+
+/* ---------- 玻璃态导航 + Logo 呼吸光晕 ---------- */
+.glass{background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,0.3);}
+nav .tech-bg{animation:none;background:linear-gradient(135deg,#041A52,#165DFF);box-shadow:0 0 12px rgba(22,93,255,.4);animation:logoPulse 3s ease-in-out infinite;}
+@keyframes logoPulse{0%,100%{box-shadow:0 0 8px rgba(22,93,255,.3);}50%{box-shadow:0 0 18px rgba(22,93,255,.6);}}
+
+/* ---------- 渐变文字 ---------- */
+.gradient-text{background:linear-gradient(135deg,#3D7BFF,#165DFF);-webkit-background-clip:text;background-clip:text;color:transparent;}
+
+/* ---------- 卡片悬浮：上浮 + 阴影 + 渐变描边 + 3D 倾斜(JS) ---------- */
+.card-hover{position:relative;transition:transform .3s ease,box-shadow .3s ease;}
+.card-hover:hover{transform:translateY(-6px);box-shadow:0 24px 48px -16px rgba(22,93,255,.35);}
+.card-hover::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1.5px;background:linear-gradient(135deg,#165DFF,#06B6D4,#7C3AED);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;opacity:0;transition:opacity .35s;pointer-events:none;}
+.card-hover:hover::before{opacity:1;}
+
+/* ---------- 导航链接渐变下划线 ---------- */
+.nav-link{position:relative;}
+.nav-link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;border-radius:2px;background:linear-gradient(90deg,#165DFF,#06B6D4);transition:width .3s;}
+.nav-link:hover::after{width:100%;}
+.nav-link.active::after{width:100%;}
+.nav-link.active{color:#165DFF;font-weight:600;}
+
+/* ---------- 面包屑底部分隔线升级（子页面） ---------- */
+nav + div{border-image:linear-gradient(90deg,transparent,rgba(22,93,255,.45),rgba(6,182,212,.45),rgba(124,58,237,.45),transparent) 1;}
+
+/* ---------- section 标题：装饰条 + 渐变下划线 ---------- */
+.section-title{position:relative;display:inline-block;}
+.section-title::before{content:'';position:absolute;left:-14px;top:50%;transform:translateY(-50%);width:6px;height:28px;background:linear-gradient(to bottom,#165DFF,#0A37A8);border-radius:3px;}
+.section-title::after{content:'';position:absolute;left:0;bottom:-6px;height:3px;width:100%;border-radius:2px;background:linear-gradient(90deg,#165DFF,#06B6D4,transparent);}
+
+/* ---------- 图表容器 ---------- */
+.chart-container{width:100%;height:380px;}
+@media(max-width:640px){.chart-container{height:300px;}}
+
+/* ---------- 淡入动画 ---------- */
+.fade-in{animation:fadeIn .8s ease both;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- 页面切换过渡 ---------- */
+.page-transition{animation:pageIn .5s ease both;}
+@keyframes pageIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+/* ---------- 能力进度条：渐变 + 流光 ---------- */
+.capability-bar{height:8px;background:#E8F1FF;border-radius:4px;overflow:hidden;}
+.capability-fill{position:relative;height:100%;border-radius:4px;background:linear-gradient(90deg,#165DFF,#06B6D4);transition:width 1.2s ease;overflow:hidden;}
+.capability-fill::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);animation:barShine 2.2s ease infinite;}
+@keyframes barShine{0%{transform:translateX(-100%);}60%,100%{transform:translateX(100%);}}
+
+/* ---------- 年份标签色 ---------- */
+.year-tag-1{background:#E8F1FF;color:#165DFF;}
+.year-tag-2{background:#FFF7E6;color:#D48806;}
+.year-tag-3{background:#E6FFFB;color:#00A870;}
+
+/* ---------- 按钮主色：渐变 + 发光 ---------- */
+.btn-primary{background:linear-gradient(135deg,#165DFF,#0E48D4);color:white;box-shadow:0 6px 20px -6px rgba(22,93,255,.5);transition:all .2s;}
+.btn-primary:hover{background:linear-gradient(135deg,#3D7BFF,#165DFF);transform:translateY(-2px);box-shadow:0 12px 28px -6px rgba(22,93,255,.6);}
+
+/* ---------- 卡片链接 ---------- */
+.card-link{cursor:pointer;text-decoration:none;}
+.card-link:hover{text-decoration:none;}
+
+/* ---------- 技能标签 ---------- */
+.tag-skill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:11px;font-weight:500;background:#E8F1FF;color:#165DFF;border:1px solid #BFDBFE;line-height:1.8;}
+
+/* ---------- 页脚顶部渐变光线 ---------- */
+footer{position:relative;}
+footer::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#165DFF,#06B6D4,#7C3AED,transparent);}
+
+/* ---------- 尊重减弱动效偏好 ---------- */
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;}}
