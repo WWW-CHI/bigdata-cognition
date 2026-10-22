@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课程体系 | 大数据技术专业认知 · 三年学习成果展示</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="assets/tailwind.config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/shared.css">
+</head>
+<body class="antialiased">
+
+<!-- 导航栏 -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 glass shadow-sm transition-shadow">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <a href="index.html" class="flex items-center gap-2">
+        <div class="w-9 h-9 rounded-lg tech-bg flex items-center justify-center">
+          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10m0 0l4-4m-4 4l4 4M20 17V7m0 0l-4 4m4-4l-4-4M14 4H10a2 2 0 00-2 2v12a2 2 0 002 2h4a2 2 0 002-2V6a2 2 0 00-2-2z"/></svg>
+        </div>
+        <span class="font-bold text-slate-800 text-lg">大数据技术专业认知</span>
+      </a>
+      <div class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+        <a href="index.html" class="nav-link hover:text-brand-700">首页</a>
+        <a href="major.html" class="nav-link hover:text-brand-700">专业介绍</a>
+        <a href="course.html" class="nav-link active">课程体系</a>
+        <a href="job.html" class="nav-link hover:text-brand-700">就业方向</a>
+        <a href="roadmap.html" class="nav-link hover:text-brand-700">学习路线</a>
+        <a href="survey.html" class="nav-link hover:text-brand-700">调研可视化</a>
+        <a href="about.html" class="nav-link hover:text-brand-700">关于我们</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg hover:bg-slate-100">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+    <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-2 text-sm">
+      <a href="index.html" class="block py-2 text-slate-600 hover:text-brand-700">首页</a>
+      <a href="major.html" class="block py-2 text-slate-600 hover:text-brand-700">专业介绍</a>
+      <a href="course.html" class="block py-2 text-brand-700 font-semibold">课程体系</a>
+      <a href="job.html" class="block py-2 text-slate-600 hover:text-brand-700">就业方向</a>
+      <a href="roadmap.html" class="block py-2 text-slate-600 hover:text-brand-700">学习路线</a>
+      <a href="survey.html" class="block py-2 text-slate-600 hover:text-brand-700">调研可视化</a>
+      <a href="about.html" class="block py-2 text-slate-600 hover:text-brand-700">关于我们</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 面包屑 -->
+<div class="pt-24 pb-4 bg-slate-50 border-b border-slate-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm text-slate-500">
+    <a href="index.html" class="hover:text-brand-700">首页</a> <span class="mx-2">›</span> <span class="text-slate-700 font-semibold">课程体系</span>
+  </div>
+</div>
+
+<!-- 课程体系主内容 -->
+<section class="py-16 page-transition bg-slate-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 class="text-3xl sm:text-4xl font-black text-slate-800 mb-2">三年课程体系</h1>
+    <p class="text-slate-500 mb-12">公共基础课 + 专业核心课 + 集中实践环节三层结构 · 总学分 72 · 实践占比 ≥ 50%</p>
+
+    <!-- ========== 第一学年 ========== -->
+    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-6">
+      <div class="flex flex-wrap items-center gap-3 mb-5 pb-4 border-b border-slate-100">
+        <span class="year-tag-1 px-3 py-1.5 rounded-lg text-sm font-bold">第一学年</span>
+        <span class="text-slate-500 text-sm">基础筑牢 · 建立计算机思维</span>
+        <div class="flex-1 text-right text-xs text-slate-400">建议 60% 时间用于编程练习</div>
+      </div>
+      <div class="grid lg:grid-cols-3 gap-5">
+        <!-- 能力目标 -->
+        <div>
+          <h4 class="font-bold text-slate-800 mb-3 text-sm flex items-center gap-2">🎯 学年能力目标</h4>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2"><span class="text-brand-600">•</span>理解计算机硬件/软件/网络基本原理</li>
+            <li class="flex items-start gap-2"><span class="text-brand-600">•</span>熟练使用 Python 基础语法，能写简单数据处理脚本</li>
+            <li class="flex items-start gap-2"><span class="text-brand-600">•</span>掌握 Git + GitHub 版本控制，会搭建开发环境</li>
+            <li class="flex items-start gap-2"><span class="text-brand-600">•</span>具备使用 Excel 进行数据整理的基础能力</li>
+          </ul>
+        </div>
+        <!-- 课程列表 -->
+        <div>
+          <h4 class="font-bold text-slate-800 mb-3 text-sm flex items-center gap-2">📚 核心课程（12 门）</h4>
+          <ul class="space-y-1.5 text-sm text-slate-600">
+            <li>▸ 高等数学（4 学分）</li>
+            <li>▸ 大学英语（4 学分）</li>
+            <li>▸ 计算机基础（2 学分）</li>
+            <li>▸ Python 程序设计（6 学分）</li>
+            <li>▸ 计算机网络（4 学分）</li>
+            <li>▸ Linux 操作系统基础（3 学分）</li>
+            <li>▸ 思想政治（4 学分）+ 体育（2 学分）</li>
+          </ul>
+        </div>
+        <!-- 实训任务 -->
+        <div>
+          <h4 class="font-bold text-slate-800 mb-3 text-sm flex items-center gap-2">🛠 实训任务</h4>
+          <div class="space-y-2 text-xs">
+            <div class="p-2 rounded-lg year-tag-1">
+              <p class="font-semibold">项目 1：学生成绩管理系统</p>
+              <p class="opacity-75">用 Python + 文件存储实现增删改查</p>
+            </div>
+            <div class="p-2 rounded-lg year-tag-1">
+              <p class="font-semibold">项目 2：豆瓣电影 Top250 爬虫</p>
+              <p class="opacity-75">Requests + BeautifulSoup，输出 CSV</p>
+            </div>
+            <div class="p-2 rounded-lg bg-slate-50 border border-slate-100">
+              <p class="font-semibold">✅ 技能证书</p>
+              <p class="opacity-75">计算机二级 Python</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 第二学年 ========== -->
+    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-6 relative">
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-brand-600 to-brand-500 text-white text-xs font-bold shadow">核心学年 · 大数据技术栈入门</div>
+      <div class="flex flex-wrap items-center gap-3 mb-5 pb-4 border-b border-slate-100 mt-2">
+        <span class="year-tag-2 px-3 py-1.5 rounded-lg text-sm font-bold">第二学年</span>
+        <span class="text-slate-500 text-sm">专业进阶 · 深入大数据核心技术</span>
+        <div class="flex-1 text-right text-xs text-slate-400">建议 40% 时间用于集群搭建与调优</div>
+      </div>
+      <div class="grid lg:grid-cols-3 gap-5">
+        <div>
+          <h4 class="font-bold text-slate-800 mb-3 text-sm flex items-center gap-2">🎯 学年能力目标</h4>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2"><span class="text-amber-600">•</span>能独立安装 MySQL，熟练编写 SQL 多表查询与优化</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600">•</span>独立搭建 Hadoop（HDFS + YARN + MapReduce）集群</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600">•</span>掌握 Spark 核心 API（RDD + DataFrame + SQL）</li>
+            <li class="flex items-start gap-2"><span class="text-amber-600">•</span>能使用 DataX/Kettle 完成数据迁移和 ETL</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-800 mb-3 text-sm flex items-center gap-2">📚 核心课程（14 门）</h4>
+          <ul class="space-y-1.5 text-sm text-slate-600">
+            <li>▸ Java 程序设计（4 学分）</li>
+            <li>▸ MySQL 数据库原理与 SQL 进阶（6 学分）</li>
+            <li>▸ Hadoop 大数据平台部署与运维（6 学分）</li>
+            <li>▸ Spark 分布式数据处理（5 学分）</li>
+            <li>▸ Flink 实时流式计算（4 学分）</li>
+            <li>▸ 数据仓库与数据挖掘导论（4 学分）</li>
+            <li>▸ 概率论与数理统计（3 学分）</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-800 mb-3 text-sm flex items-center gap-2">🛠 实训任务</h4>
+          <div class="space-y-2 text-xs">
+            <div class="p-2 rounded-lg year-tag-2">
+              <p class="font-semibold">项目 1：电商数据仓库建模</p>
+              <p class="opacity-75">Kimball 维度建模 + Hive 表设计</p>
+            </div>
+            <div class="p-2 rounded-lg year-tag-2">
+              <p class="font-semibold">项目 2：Spark 用户行为分析</p>
+              <p class="opacity-75">Spark SQL + DataFrame + MySQL 输出</p>
+            </div>
+            <div class="p-2 rounded-lg bg-slate-50 border border-slate-100">
+              <p class="font-semibold">✅ 技能证书</p>
+              <p class="opacity-75">华为 HCIA 大数据 / 阿里云 ACP</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 第三学年 ========== -->
+    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-10">
+      <div class="flex flex-wrap items-center gap-3 mb-5 pb-4 border-b border-slate-100">
+        <span class="year-tag-3 px-3 py-1.5 rounded-lg text-sm font-bold">第三学年</span>
+        <span class="text-slate-500 text-sm">实战冲刺 · 综合项目 + 岗位实习</span>
+        <div class="flex-1 text-right text-xs text-slate-400">50% 时间用于企业实习 + 毕业设计</div>
+      </div>
+      <div class="grid lg:grid-cols-3 gap-5">
+        <div>
+          <h4 class="font-bold text-slate-800 mb-3 text-sm flex items-center gap-2">🎯 学年能力目标</h4>
+          <ul class="space-y-2 text-sm text-slate-600">
+            <li class="flex items-start gap-2"><span class="text-emerald-600">•</span>熟练使用 ECharts/Tableau/FineBI 构建交互式 BI 看板</li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600">•</span>具备前端基础（HTML/CSS/JS），能将数据嵌入 Web 页面</li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600">•</span>完成 6 个月企业实习，适应职场环境</li>
+            <li class="flex items-start gap-2"><span class="text-emerald-600">•</span>独立完成毕业设计项目（如本网站）</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-800 mb-3 text-sm flex items-center gap-2">📚 核心课程（10 门 + 实习）</h4>
+          <ul class="space-y-1.5 text-sm text-slate-600">
+            <li>▸ 数据可视化（ECharts + Tableau）（5 学分）</li>
+            <li>▸ ETL 工具与数据治理（DataX / Airflow）（4 学分）</li>
+            <li>▸ 机器学习基础（Scikit-learn 实战）（4 学分）</li>
+            <li>▸ Web 前端开发基础（HTML/CSS/JS）（3 学分）</li>
+            <li>▸ 大数据综合项目实训（6 学分）</li>
+            <li>▸ 岗位实习（6 个月，8 学分）</li>
+            <li>▸ 毕业设计（6 学分）</li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold text-slate-800 mb-3 text-sm flex items-center gap-2">🛠 实训任务</h4>
+          <div class="space-y-2 text-xs">
+            <div class="p-2 rounded-lg year-tag-3">
+              <p class="font-semibold">项目 1：企业级 BI 看板搭建</p>
+              <p class="opacity-75">ECharts + Spring Boot + MySQL</p>
+            </div>
+            <div class="p-2 rounded-lg year-tag-3">
+              <p class="font-semibold">项目 2：本网站即为真实成果</p>
+              <p class="opacity-75">Web 前端 + ECharts + 数据清洗综合</p>
+            </div>
+            <div class="p-2 rounded-lg bg-slate-50 border border-slate-100">
+              <p class="font-semibold">✅ 毕业要求</p>
+              <p class="opacity-75">实习鉴定合格 + 毕业设计答辩通过</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ========== 雷达图：行业需求 vs 课程覆盖 ========== -->
+    <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm mb-8">
+      <h3 class="font-bold text-slate-800 mb-1">课程重要度雷达图：行业需求 vs 课程覆盖</h3>
+      <p class="text-sm text-slate-500 mb-4">蓝色区域 = 行业实际岗位的重要度评分（满分 10），橙色区域 = 学校当前课程的开设覆盖度评分。两区域的"间隙"即为课程改进方向。</p>
+      <div id="radarChart" class="chart-container" style="height:440px;"></div>
+      <p class="text-xs text-slate-400 mt-3">💡 关键洞察：Python 和数据库两方面课程覆盖度高，但 Hadoop/Spark/Flink 三门大数据核心课的覆盖度明显低于行业需求，建议强化实训环节。</p>
+    </div>
+
+    <!-- 跳转提示 -->
+    <div class="grid md:grid-cols-2 gap-4">
+      <a href="roadmap.html" class="card-hover block bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
+        <p class="text-sm text-slate-500 mb-1">想了解</p>
+        <p class="font-bold text-slate-800">三学年完整成长时间轴 →</p>
+      </a>
+      <a href="job.html" class="card-hover block bg-white rounded-2xl p-5 border border-slate-100 shadow-sm">
+        <p class="text-sm text-slate-500 mb-1">学成毕业后能</p>
+        <p class="font-bold text-slate-800">做什么工作？就业方向一览 →</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-400 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <div class="mb-3 text-sm">
+      <a href="index.html" class="hover:text-brand-500 mx-2">首页</a>·
+      <a href="major.html" class="hover:text-brand-500 mx-2">专业介绍</a>·
+      <a href="course.html" class="hover:text-brand-500 mx-2">课程体系</a>·
+      <a href="job.html" class="hover:text-brand-500 mx-2">就业方向</a>·
+      <a href="roadmap.html" class="hover:text-brand-500 mx-2">学习路线</a>·
+      <a href="survey.html" class="hover:text-brand-500 mx-2">调研可视化</a>·
+      <a href="about.html" class="hover:text-brand-500 mx-2">关于我们</a>
+    </div>
+    <p class="text-xs">大数据技术专业认知网站 · 大数据技术专科三年学习成果综合展示 · 课程设计项目 · © 2025</p>
+  </div>
+</footer>
+
+<script src="assets/shared.js"></script>
+<script>
+  initNavbar('course.html');
+
+  /* ===== 雷达图：行业重要度 vs 课程覆盖度 ===== */
+  (function(){
+    var chart = echarts.init(document.getElementById('radarChart'));
+    registerChart(chart);
+    chart.setOption({
+      tooltip:{},
+      legend:{data:['行业实际重要度','学校课程覆盖度'],bottom:0,textStyle:{color:'#475569'}},
+      radar:{
+        indicator:[
+          {name:'Python 编程',max:10},
+          {name:'SQL 数据库',max:10},
+          {name:'Hadoop 平台',max:10},
+          {name:'Spark 计算',max:10},
+          {name:'Flink 流计算',max:10},
+          {name:'ETL 数据清洗',max:10},
+          {name:'ECharts 可视化',max:10},
+          {name:'Linux 运维',max:10},
+          {name:'机器学习基础',max:10},
+          {name:'Web 前端整合',max:10}
+        ],
+        shape:'polygon',
+        splitNumber:5,
+        axisName:{color:'#475569',fontSize:12},
+        splitArea:{areaStyle:{color:['#f8fafc','#f1f5f9','#f8fafc','#f1f5f9','#f8fafc']}}
+      },
+      series:[{
+        type:'radar',
+        data:[
+          {
+            value:[9.5,9.2,8.8,8.5,7.8,8.2,9.0,8.5,6.5,6.0],
+            name:'行业实际重要度',
+            itemStyle:{color:'#165DFF'},
+            areaStyle:{opacity:0.25}
+          },
+          {
+            value:[9.0,8.5,7.5,7.0,6.2,7.0,8.0,7.0,5.5,5.0],
+            name:'学校课程覆盖度',
+            itemStyle:{color:'#ea580c'},
+            areaStyle:{opacity:0.3}
+          }
+        ]
+      }]
+    });
+  })();
+</script>
+</body>
+</html>
